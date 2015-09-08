@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
-import org.quartz.ScheduleBuilder;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
@@ -28,6 +27,8 @@ public class ParamQuartz {
 			JobDetail job = JobBuilder.newJob(ParamJob.class)
 					.withIdentity("job1", "group1")
 					.build();
+			job.getJobDataMap().put(ParamJob.FAVORITE_COLOR, "Green");
+			job.getJobDataMap().put(ParamJob.EXECUTION_COUNT, 1);
 			
 			SimpleTrigger trigger = TriggerBuilder.newTrigger()
 					.withIdentity("trigger1", "group1")
